@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matematika ir Animacija</title>
+    <!-- MathJax bibliotekos įtraukimas -->
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        svg {
+            display: block;
+            margin: 20px 0;
+        }
+
+        #clock {
+            font-size: 24px;
+            color: #333;
+            text-align: right;
+            margin-top: 0;
+        }
+
+        .formula {
+            text-align: left;
+            display: inline-block;
+            width: auto;
+            margin-right: auto;
+        }
+
+        .formula-clock-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Matematiniai objektai ir animacija</h1>
+
+    <!-- MathJax matematinis objektas ir laikrodis vienoje eilutėje -->
+    <div class="formula-clock-container">
+        <div class="formula">
+            $$ \int_{D} (\nabla \cdot \mathbf{F}) \, dV = \int_{\partial D} \mathbf{F} \cdot ndS $$
+        </div>
+        <div id="clock">Laikrodis: </div>
+    </div>
+
+    <!-- SVG animacija -->
+    <h2>SVG piešinys su animacija</h2>
+    <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="100,10 40,190 160,190" fill="red">
+            <!-- Animacija: trikampio sukimas -->
+            <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="3s" repeatCount="indefinite" />
+        </polygon>
+    </svg>
+
+    <script>
+        // Funkcija dabartinei laikui gauti
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `Laikrodis: ${hours}:${minutes}:${seconds}`;
+        }
+
+        // Laikrodžio atnaujinimas kas sekundę
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
